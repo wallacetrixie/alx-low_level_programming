@@ -1,26 +1,23 @@
 #include <stdio.h>
 
-#include <time.h>
-
-#include <stdlib.h>
-
 /**
- * main - a program that prints numbers
- * Return: Always a (success)
- *
+ * main - prints all possible combinations of single-digit numbers
+ * Return: Always 0 (Success)
  */
-
 int main(void)
 {
-int d;
-for (d = '0'; d <= '9'; d++)
-putchar(d);
-if (d != '9')
-{
-putchar(',');
-putchar(' ');
-}
-putchar('\n');
+	int n;
 
-return (0);
+	for (n = 48; n < 58; n++)
+	{
+		putchar(n);
+		if (n != 57)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+	}
+	putchar('\n');
+	return (0);
 }
+
