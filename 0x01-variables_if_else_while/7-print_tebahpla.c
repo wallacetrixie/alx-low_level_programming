@@ -1,22 +1,19 @@
 #include <stdio.h>
 
-#include <time.h>
-
-#include <stdlib.h>
-
 /**
- * main - a program that prints numbers
- * Return: Always a (success)
+ * main - prints the lowercase alphabet in reverse,
+ * followed by a new line
+ * Return: Always 0 (Success)
  */
-
 int main(void)
-
 {
-int d;
-for (d = 'a'; d > 'a'; d--)
-putchar('d');
-putchar('\n');
+	char ch;
 
-return (0);
-
+	for (ch = 'z'; ch >= 'a'; ch--)
+	{
+		putchar(ch);
+	}
+	putchar('\n');
+	return (0);
 }
+
