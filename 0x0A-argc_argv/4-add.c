@@ -1,73 +1,60 @@
 #include <stdio.h>
-#include "main.h"
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 
 /**
- * _atoi - Converts a string to an integer.
- * @s: The string to be converted.
+ * check_num - Checks if the string contains only digits.
+ * @str: The character array to check.
  *
- * Return: The integer converted from the string.
+ * Return: 1 if the string contains only digits, 0 otherwise.
  */
-int _atoi(char *s)
+int check_num(char *str)
 {
-	int i, d, n, len, f, digit;
+	unsigned int count;
 
-	i = 0;
-	d = 0;
-	n = 0;
-	len = 0;
-	f = 0;
-	digit = 0;
-
-	while (s[len] != '\0')
-		len++;
-
-	while (i < len && f == 0)
+	count = 0;
+	while (count < strlen(str))
 	{
-		if (s[i] == '-')
-			++d;
-
-		if (s[i] >= '0' && s[i] <= '9')
+		if (!isdigit(str[count])) /* Check if str contains digits */
 		{
-			digit = s[i] - '0';
-			if (d % 2)
-				digit = -digit;
-			n = n * 10 + digit;
-			f = 1;
-			if (s[i + 1] < '0' || s[i + 1] > '9')
-				break;
-			f = 0;
+			return (0);
 		}
-		i++;
+		count++;
 	}
-
-	if (f == 0)
-		return (0);
-
-	return (n);
+	return (1);
 }
 
 /**
- * main - Multiplies two numbers.
- * @argc: Number of arguments.
- * @argv: Array of arguments.
+ * main - Prints the sum of numbers or reports an error.
+ * @argc: The number of command-line arguments.
+ * @argv: The array of command-line arguments.
  *
- * Return: 0 (Success), 1 (Error).
+ * Return: Always 0 (Success).
  */
 int main(int argc, char *argv[])
 {
-	int result, num1, num2;
+	int count;
+	int str_to_int;
+	int sum = 0;
 
-	if (argc < 3 || argc > 3)
+	count = 1;
+	while (count < argc) /* Iterate through the whole array of arguments */
 	{
-		printf("Error\n");
-		return (1);
+		if (check_num(argv[count]))
+		{
+			str_to_int = atoi(argv[count]); /* Convert the string to an integer */
+			sum += str_to_int;
+		}
+		else
+		{
+			printf("Error\n"); /* Report an error ifthat are not digits */
+			return (1);
+		}
+		count++;
 	}
 
-	num1 = _atoi(argv[1]);
-	num2 = _atoi(argv[2]);
-	result = num1 * num2;
-
-	printf("%d\n", result);
+	printf("%d\n", sum); /* Print the sum */
 
 	return (0);
 }
